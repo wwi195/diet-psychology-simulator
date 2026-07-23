@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ダイエット心理シミュレーター | シミュレータ専門店かわい</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <h1>ダイエット心理シミュレーター</h1>
+  <p class="app-sub">後悔ログで、自分の行動パターンを可視化</p>
+</header>
+
+<nav class="tabs">
+  <button type="button" class="tab-btn active" data-tab="record">記録する</button>
+  <button type="button" class="tab-btn" data-tab="ranking">みんなの結果</button>
+  <button type="button" class="tab-btn" data-tab="detail" id="detail-tab-btn" disabled>じっくり分析</button>
+</nav>
+
+<main>
+  <section id="tab-record" class="tab-panel active">
+    <form id="log-form">
+      <div class="field-group">
+        <label class="field-label">どっちした？</label>
+        <div class="choice-group" id="action-type-group">
+          <button type="button" class="choice-btn" data-value="間食">間食</button>
+          <button type="button" class="choice-btn" data-value="運動サボり">運動サボり</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">後悔した？</label>
+        <div class="choice-group" id="regret-group">
+          <button type="button" class="choice-btn regret-yes" data-value="true">後悔した</button>
+          <button type="button" class="choice-btn regret-no" data-value="false">してない</button>
+        </div>
+      </div>
+
+      <button type="submit" id="submit-btn" class="submit-btn" disabled>記録する</button>
+      <p id="form-message" class="form-message" role="status"></p>
+      <p id="detail-invite" class="detail-invite hidden">
+        ＋ <button type="button" id="detail-invite-btn" class="detail-invite-btn">もっと詳しく分析する</button>
+      </p>
+    </form>
+  </section>
+
+  <section id="tab-ranking" class="tab-panel">
+    <div id="ranking-list" class="ranking-list">
+      <p class="ranking-empty">読み込み中...</p>
+    </div>
+  </section>
+
+  <section id="tab-detail" class="tab-panel">
+    <div id="detail-empty" class="ranking-empty">
+      まず「記録する」タブで記録してみよう
+    </div>
+    <form id="detail-form" class="hidden">
+      <div class="field-group">
+        <label class="field-label">きっかけは？</label>
+        <div class="choice-group choice-group-wrap" id="trigger-group"></div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">そのときの気分は？（任意）</label>
+        <div class="choice-group choice-group-wrap" id="mood-group"></div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">我慢しようとした？（任意）</label>
+        <div class="choice-group choice-group-wrap" id="resistance-group"></div>
+      </div>
+      <button type="submit" id="detail-submit-btn" class="submit-btn" disabled>送信して比較する</button>
+      <p id="detail-message" class="form-message" role="status"></p>
+    </form>
+    <div id="detail-result" class="detail-result hidden"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
